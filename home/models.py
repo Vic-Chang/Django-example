@@ -2,12 +2,6 @@ from django.db import models
 
 
 class Member(models.Model):
-    # 設定 Table 欄位
-    # 欄位屬性可參照 https://docs.djangoproject.com/en/1.10/ref/models/fields/#field-types
-    # 欄位參數可參照 https://docs.djangoproject.com/en/1.10/ref/models/fields/#field-options
-
-    # 欄位不必設定 ID , Table 產出時會自動加上 ID 欄位，並且為 PK。
-    # 若有在自建欄位上設定 `primary_key` 參數，程式則不會自動建立 ID 欄位
 
     # 姓名, 文字屬性, 最大長度 6
     name = models.TextField(max_length=6, help_text='使用者姓名')
