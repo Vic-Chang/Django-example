@@ -57,3 +57,10 @@ def del_model(request, user_id):
     record.delete()
 
     return render(request, 'home/del_model.html')
+
+
+# 讀取紀錄
+def read_model(request, user_id):
+    all_records = models.Member.objects.all()
+    record = models.Member.objects.get(id=user_id)
+    return render(request, 'home/read_model.html', {'all_records': all_records, 'record': record})

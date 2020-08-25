@@ -1,0 +1,22 @@
+<h1>
+    Read Model successfully !
+</h1>
+
+
+<h3>
+    Read All Data
+</h3>
+
+{% for record in all_records %}
+    <p>
+        {{ record.name }}
+    </p>
+{% endfor %}
+
+
+<h3>
+    Read Specific Data
+</h3>
+<p>
+    {{ record.name }}
+</p>
