@@ -15,10 +15,19 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from rest_framework import routers
+from api import views
+
+router = routers.DefaultRouter()
+router.register(r'Member', views.MemberViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('home/', include('home.urls')),
+    path('api/', include(router.urls)),
+    # 取得 Token 的路由
+    # 可透過 `python manage.py createsuperuser --email admin@example.com --username admin` 建立帳號
+    path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     # 將 home app 設為首頁
     path('', include('home.urls'))
 ]
