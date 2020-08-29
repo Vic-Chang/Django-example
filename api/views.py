@@ -1,3 +1,7 @@
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from rest_framework import status
+
 from home.models import Member
 from rest_framework import viewsets
 from rest_framework import permissions
@@ -16,3 +20,16 @@ class MemberViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticated]
 
 
+@api_view(['GET', 'POST'])
+def member_all_data(request, format=None):
+    if request.method == 'GET':
+        snippets = Member.objects.all()
+        serializer = MemberSerializer(snippets, many=True)
+        return Response(serializer.data)
+
+    elif request.method == 'POST':
+        serializer = MemberSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

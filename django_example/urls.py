@@ -24,7 +24,10 @@ router.register(r'Member', views.MemberViewSet)
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('home/', include('home.urls')),
+    # Use viewSet
     path('api/', include(router.urls)),
+    # Use Api View
+    path('api/', include('api.urls')),
     # 取得 Token 的路由
     # 可透過 `python manage.py createsuperuser --email admin@example.com --username admin` 建立帳號
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
